@@ -1,0 +1,24 @@
+{
+  "name": "movie-of-my-life",
+  "version": "1.0.0",
+  "description": "Backend API com Fastify e TypeScript",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.4.1",
+    "@fastify/swagger": "^8.12.1",
+    "@fastify/swagger-ui": "^2.1.0",
+    "dotenv": "^16.5.0",
+    "fastify": "^4.24.3",
+    "openai": "^4.97.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.6.2",
+    "typescript": "^5.3.2"
+  }
+}
