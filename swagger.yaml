@@ -1,0 +1,158 @@
+openapi: 3.0.0
+info:
+  title: Movie of My Life API
+  description: |
+    # Movie of My Life - API de Recomendação de Filmes Personalizada
+
+    Esta API faz parte do aplicativo "Movie of My Life", uma plataforma inovadora que utiliza inteligência artificial para recomendar filmes baseados na história de vida das pessoas.
+
+    ## Sobre o Aplicativo
+    O Movie of My Life é uma ferramenta que combina psicanálise e cinema para criar recomendações de filmes altamente personalizadas. Ao invés de recomendar filmes baseados apenas em gêneros ou avaliações, nossa plataforma analisa profundamente a história de vida do usuário, suas emoções, jornada pessoal e contexto para sugerir filmes que ressoem verdadeiramente com sua experiência.
+
+    ## Versões Disponíveis
+    - **Gratuita**: Recomendação básica baseada na história do usuário
+    - **Premium**: Análise profunda incluindo emoções, jornada pessoal, preferências e contexto
+
+    ## Tecnologias Utilizadas
+    - GPT-4 para análise e recomendações
+    - Flask para backend
+    - Análise psicológica e cinematográfica
+  version: 1.0.0
+  contact:
+    name: Movie of My Life Team
+    email: contato@movieofmylife.com
+
+servers:
+  - url: http://localhost:5000
+    description: Servidor de Desenvolvimento
+
+paths:
+  /getFreeMovie:
+    get:
+      summary: Recomendação Gratuita de Filme
+      description: |
+        Retorna uma recomendação de filme baseada na história do usuário.
+        Versão gratuita com análise básica.
+      parameters:
+        - name: story
+          in: query
+          required: true
+          schema:
+            type: string
+          description: História de vida do usuário
+        - name: language
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [pt, en, es]
+          description: Idioma da resposta (pt=Português, en=Inglês, es=Espanhol)
+      responses:
+        '200':
+          description: Recomendação gerada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  movie:
+                    type: string
+                    description: Nome do filme recomendado
+              example:
+                movie: "O Segredo de Brokeback Mountain"
+
+  /getPaidMovie:
+    get:
+      summary: Recomendação Premium de Filme
+      description: |
+        Retorna uma recomendação detalhada de filme baseada em uma análise profunda da história do usuário.
+        Versão premium com análise completa.
+      parameters:
+        - name: story
+          in: query
+          required: true
+          schema:
+            type: string
+          description: História de vida do usuário
+        - name: emotion
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Emoção predominante na história
+        - name: journey
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Jornada pessoal do usuário
+        - name: favGenre
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Gênero de filme favorito
+        - name: age
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Idade do usuário
+        - name: cenaryOfLife
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Cenário de vida atual
+        - name: endOfLife
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Perspectiva sobre o fim da vida
+        - name: keyWords
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Palavras-chave importantes
+        - name: language
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [pt, en, es]
+          description: Idioma da resposta (pt=Português, en=Inglês, es=Espanhol)
+        - name: gender_identity
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Identidade de gênero do usuário
+      responses:
+        '200':
+          description: Recomendação premium gerada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  movie_name:
+                    type: string
+                    description: Nome do filme recomendado
+                  movie_year:
+                    type: string
+                    description: Ano do filme
+                  connection_explanation:
+                    type: string
+                    description: Explicação detalhada da conexão entre o filme e a história
+                  resonant_elements:
+                    type: array
+                    items:
+                      type: string
+                    description: Lista de elementos que ressoam com a história
+              example:
+                movie_name: "Na Natureza Selvagem"
+                movie_year: "2007"
+                connection_explanation: "O filme se conecta profundamente com sua jornada de transformação..."
+                resonant_elements: ["viagem", "transformação", "saudade"] 
